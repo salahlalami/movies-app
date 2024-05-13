@@ -1,95 +1,75 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+import React from "react";
+import Link from "next/link";
+import { SmileFilled } from "@ant-design/icons";
+import {
+  Button,
+  DatePicker,
+  Form,
+  InputNumber,
+  Select,
+  Slider,
+  Switch,
+  ConfigProvider,
+} from "antd";
+import theme from "@/app/themeConfig";
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const HomePage = () => (
+  <div style={{ padding: 100, height: "100vh" }}>
+    <div className="text-center mb-5">
+      <Link href="#" className="logo mr-0">
+        <SmileFilled style={{ fontSize: 48 }} />
+      </Link>
+      <p className="mb-0 mt-3 text-disabled">Welcome to the world !</p>
+    </div>
+    <div>
+      <Form
+        layout="horizontal"
+        size={"large"}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 8 }}
+      >
+        <Form.Item label="Input Number">
+          <InputNumber
+            min={1}
+            max={10}
+            style={{ width: 100 }}
+            defaultValue={3}
+            name="inputNumber"
+          />
+        </Form.Item>
+        <Form.Item label="Switch">
+          <Switch defaultChecked />
+        </Form.Item>
+        <Form.Item label="Slider">
+          <Slider defaultValue={70} />
+        </Form.Item>
+        <Form.Item label="Select">
+          <Select
+            defaultValue="lucy"
+            style={{ width: 192 }}
+            options={[
+              { value: "jack", label: "Jack" },
+              { value: "lucy", label: "Lucy" },
+              { value: "Yiminghe", label: "yiminghe" },
+              { value: "lijianan", label: "lijianan" },
+              { value: "disabled", label: "Disabled", disabled: true },
+            ]}
+          />
+        </Form.Item>
+        <Form.Item label="DatePicker">
+          <DatePicker showTime />
+        </Form.Item>
+        <Form.Item style={{ marginTop: 48 }} wrapperCol={{ offset: 8 }}>
+          <Button type="primary" htmlType="submit">
+            OK
+          </Button>
+          <Button style={{ marginLeft: 8 }}>Cancel</Button>
+        </Form.Item>
+      </Form>
+    </div>
+  </div>
+);
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
-}
+export default HomePage;
