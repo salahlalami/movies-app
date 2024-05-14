@@ -15,19 +15,19 @@ import RepoCard from "@/components/RepoCard";
 
 import { repoType } from "@/types";
 
-const Repository = () => {
+const Repository = ({ params }: { params: { id: string } }) => {
   let router = useRouter();
-  let { repositoryId = "" } = useParams();
+
   const [repo, setRepo] = useState<repoType>();
 
   const repoList = useSelector(selectSearchedItems);
 
   useEffect(() => {
     const current = repoList.result.items.find(
-      ({ id }: { id: string }) => id == repositoryId
+      ({ id }: { id: string }) => id == id
     );
     setRepo(current);
-  }, [repoList, repositoryId]);
+  }, [repoList]);
 
   return (
     <DefaultLayout>
