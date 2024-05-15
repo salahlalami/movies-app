@@ -22,7 +22,7 @@ const YearSelect = ({
       options={yearsArray}
       onChange={handleChange}
       placeholder="Select Year"
-      style={{ width: 120 }}
+      style={{ width: "100%" }}
     />
   );
 };

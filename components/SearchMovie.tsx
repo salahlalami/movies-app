@@ -5,7 +5,7 @@ const SearchMovie = ({ handleChange }: { handleChange: (e: any) => void }) => {
     <Input
       defaultValue={"Pokemon"}
       onChange={handleChange}
-      style={{ width: 200 }}
+      style={{ width: "100%" }}
     />
   );
 };

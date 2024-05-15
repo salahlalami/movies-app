@@ -10,6 +10,7 @@ const MovieTypeSelect = ({
       className="actionSelect"
       onChange={handleChange}
       placeholder="Select Movie Type"
+      style={{ width: "100%" }}
     >
       <Select.Option>All</Select.Option>
       <Select.Option value={"movie"}>Movie</Select.Option>

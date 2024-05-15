@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Divider } from "antd";
+import { Divider, Button } from "antd";
+import { HeartOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 import { PageHeader } from "@ant-design/pro-layout";
 import { useDebounce } from "ahooks";
 
 import { DefaultLayout } from "@/layout";
 
-import FavorFilter from "@/components/FavorFilter";
 import FilmList from "@/components/FilmList";
 import SearchMovie from "@/components/SearchMovie";
 import MovieTypeSelect from "@/components/MovieTypeSelect";
@@ -15,6 +16,7 @@ import YearSelect from "@/components/YearSelect";
 import { favorType } from "@/types";
 
 const Home = () => {
+  let router = useRouter();
   const [favorState, setFavorState] = useState<favorType>("all");
   const [movieTypeState, setMovieTypeState] = useState<string | null>(null);
   const [year, setYear] = useState<number | null>(null);
@@ -38,20 +40,21 @@ const Home = () => {
     <DefaultLayout>
       <PageHeader
         ghost={false}
-        title="Films App"
-        subTitle="Movies , Series  , Docs"
+        title="Movies App"
+        subTitle="Movies , Series , Episodes"
         extra={[
-          // <FavorFilter
-          //   key="FavorFilter"
-          //   favorState={favorState}
-          //   handleFavorChange={handleFavorChange}
-          // />,
-
           <SearchMovie key="SearchMovie" handleChange={handleSearchChange} />,
           <YearSelect key="YearSelect" handleChange={handleYearChange} />,
           <MovieTypeSelect
             key="MovieTypeSelect"
             handleChange={handleMovieTypeChange}
+          />,
+          <Button
+            key="favorMovies"
+            danger
+            shape="circle"
+            icon={<HeartOutlined />}
+            onClick={() => router.push("/favor")}
           />,
         ]}
         className="appHeader"
