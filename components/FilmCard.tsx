@@ -92,7 +92,7 @@ const FilmCard = ({ item }: { item: filmType | undefined }) => {
           icon={<CalendarOutlined />}
         />,
         <Action
-          text={"Close"}
+          text={"Open"}
           key="closeCard"
           icon={<ArrowsAltOutlined />}
           onClick={() => {
