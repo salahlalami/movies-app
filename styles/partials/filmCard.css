@@ -4,7 +4,8 @@
 }
 
 .filmCard .ant-card-body {
-  padding: 0;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 .filmCard .ant-card-body img {
   width: 100%;
