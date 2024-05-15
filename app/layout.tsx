@@ -5,10 +5,9 @@ import "@/styles/app.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 const inter = Inter({ subsets: ["latin"] });
 
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
-import theme from "@/app/themeConfig";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -25,7 +24,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <AntdRegistry>
           <Provider store={store}>
-            <ConfigProvider theme={theme}>{children}</ConfigProvider>
+            <ConfigProvider
+              theme={
+                {
+                  // algorithm: theme.darkAlgorithm,
+                }
+              }
+            >
+              {children}
+            </ConfigProvider>
           </Provider>
         </AntdRegistry>
       </body>

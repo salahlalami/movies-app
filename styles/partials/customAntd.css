@@ -25,7 +25,4 @@ h6 {
 
 .ant-card {
   border-radius: 12px;
-  &:hover {
-    box-shadow: @card-shadow;
-  }
 }

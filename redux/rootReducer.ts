@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { reducer as githubReducer } from './github';
+import { reducer as filmsReducer } from "./films";
 
 // Combine all reducers.
 
 const rootReducer = combineReducers({
-  github: githubReducer,
+  films: filmsReducer,
 });
 
 export default rootReducer;
