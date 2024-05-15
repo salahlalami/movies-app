@@ -1,19 +1,29 @@
 export const storePersist = {
   set: (key: string, state: any) => {
-    window.localStorage.setItem(key, JSON.stringify(state));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, JSON.stringify(state));
+    }
   },
   get: (key: string) => {
-    const result: any = window.localStorage.getItem(key);
-    return JSON.parse(result);
+    if (typeof window !== "undefined") {
+      const result: any = window.localStorage.getItem(key);
+      return JSON.parse(result);
+    }
   },
   remove: (key: string) => {
-    window.localStorage.removeItem(key);
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(key);
+    }
   },
   getAll: () => {
-    return window.localStorage;
+    if (typeof window !== "undefined") {
+      return window.localStorage;
+    }
   },
   clear: () => {
-    window.localStorage.clear();
+    if (typeof window !== "undefined") {
+      window.localStorage.clear();
+    }
   },
 };
 
