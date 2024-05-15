@@ -22,7 +22,7 @@ const FavorMovies = () => {
       <PageHeader
         ghost={false}
         onBack={() => router.push("/")}
-        title="Back"
+        title="Favor Movies"
         className="appHeader"
         style={{ marginBottom: 50 }}
       />
