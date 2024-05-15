@@ -1,58 +1,67 @@
 "use client";
 import { useState } from "react";
-import { Divider, RadioChangeEvent } from "antd";
+import { Divider } from "antd";
 import { PageHeader } from "@ant-design/pro-layout";
+import { useDebounce } from "ahooks";
 
 import { DefaultLayout } from "@/layout";
 
 import FavorFilter from "@/components/FavorFilter";
-import RepoList from "@/components/RepoList";
-import LanguageSelect from "@/components/LanguageSelect";
-import SortSelect from "@/components/SortSelect";
+import FilmList from "@/components/FilmList";
+import SearchMovie from "@/components/SearchMovie";
+import MovieTypeSelect from "@/components/MovieTypeSelect";
+import YearSelect from "@/components/YearSelect";
 
 import { favorType } from "@/types";
 
 const Home = () => {
   const [favorState, setFavorState] = useState<favorType>("all");
-  const [languageState, setLanguageState] = useState("all");
-  const [sortState, setSortState] = useState("desc");
-  const handleFavorChange = (e: RadioChangeEvent) => {
-    setFavorState(e.target.value);
+  const [movieTypeState, setMovieTypeState] = useState<string | null>(null);
+  const [year, setYear] = useState<number | null>(null);
+
+  const [valToSearch, setValToSearch] = useState<string>("Pokemon");
+
+  const titleToSearch = useDebounce(valToSearch, { wait: 600 });
+
+  const handleMovieTypeChange = (value: string) => {
+    setMovieTypeState(value);
+  };
+  const handleYearChange = (value: number | null) => {
+    setYear(value);
   };
 
-  const handleLanguageChange = (value: string) => {
-    setLanguageState(value);
-  };
-
-  const handleSortChange = (value: string) => {
-    setSortState(value);
+  const handleSearchChange = (e: any) => {
+    setValToSearch(e.target.value);
   };
 
   return (
     <DefaultLayout>
       <PageHeader
         ghost={false}
-        title="Github App"
-        subTitle="Repository Search"
+        title="Films App"
+        subTitle="Movies , Series  , Docs"
         extra={[
-          <FavorFilter
-            key="FavorFilter"
-            favorState={favorState}
-            handleFavorChange={handleFavorChange}
-          />,
-          <SortSelect key="sortSelect" handleSortChange={handleSortChange} />,
-          <LanguageSelect
-            key="LanguageSelect"
-            handleLanguageChange={handleLanguageChange}
+          // <FavorFilter
+          //   key="FavorFilter"
+          //   favorState={favorState}
+          //   handleFavorChange={handleFavorChange}
+          // />,
+
+          <SearchMovie key="SearchMovie" handleChange={handleSearchChange} />,
+          <YearSelect key="YearSelect" handleChange={handleYearChange} />,
+          <MovieTypeSelect
+            key="MovieTypeSelect"
+            handleChange={handleMovieTypeChange}
           />,
         ]}
         className="appHeader"
       />
       <Divider />
-      <RepoList
+      <FilmList
         favorState={favorState}
-        sortState={sortState}
-        languageState={languageState}
+        movieType={movieTypeState}
+        year={year}
+        titleToSearch={titleToSearch}
       />
     </DefaultLayout>
   );

@@ -1,21 +1,26 @@
-import { githubStateType } from '@/types';
-import * as actionTypes from './types';
+import { filmStateType, filmType } from "@/types";
+import * as actionTypes from "./types";
 
-export const INITIAL_STATE: githubStateType = {
-  languageList: [],
+export const INITIAL_STATE: filmStateType = {
   favorList: [],
   search: {
-    result: { items: [] },
+    result: { items: [], total: 0, page: 1 },
+    isLoading: false,
+    isSuccess: false,
+  },
+  getById: {
+    result: null,
     isLoading: false,
     isSuccess: false,
   },
 };
 
-function removeItemFiter(array: string[], payload?: string) {
-  return array.filter((item: string) => item !== payload);
+function removeItemFiter(array: filmType[], payload?: string) {
+  const list = [...array];
+  return list.filter((item: filmType) => item.imdbID !== payload);
 }
 
-const githubReducer = (
+const filmsReducer = (
   state = INITIAL_STATE,
   action: { type?: string; payload?: any; keyState: string }
 ) => {
@@ -60,14 +65,9 @@ const githubReducer = (
         ...state,
         favorList: removeItemFiter(state.favorList, payload),
       };
-    case actionTypes.UPDATE_LANGUAGE:
-      return {
-        ...state,
-        languageList: payload,
-      };
     default:
       return state;
   }
 };
 
-export default githubReducer;
+export default filmsReducer;

@@ -1,0 +1,8 @@
+export const RESET_STATE = "FIMLS_RESET_STATE";
+
+export const REQUEST_LOADING = "FIMLS_REQUEST_LOADING";
+export const REQUEST_SUCCESS = "FIMLS_REQUEST_SUCCESS";
+export const REQUEST_FAILED = "FIMLS_REQUEST_FAILED";
+
+export const FAVOR = "FAVOR";
+export const DISFAVOR = "DISFAVOR";

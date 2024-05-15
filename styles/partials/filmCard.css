@@ -1,7 +1,14 @@
-.repoCard {
-  height: 280px;
+.filmCard {
+  height: 500px;
+  overflow: hidden;
 }
 
+.filmCard .ant-card-body {
+  padding: 0;
+}
+.filmCard .ant-card-body img {
+  width: 100%;
+}
 .actionContainer {
   display: flex;
   justify-content: space-evenly;

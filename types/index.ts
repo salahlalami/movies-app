@@ -1,33 +1,37 @@
 export type optionsType = {
-  q: string;
-  sort: string;
-  order: string;
+  s: string;
+  y: number | null;
+  type: string | null;
+  page: number;
+};
+
+export type idType = {
+  i: string;
 };
 
 export type keyOptionsType = keyof optionsType;
+export type keyIdType = keyof idType;
 
 export type searchOptionsType = {
   [key in keyof optionsType]?: optionsType[key];
 };
 
-export interface repoType {
-  id: string;
-  full_name: string;
-  stargazers_count: number;
-  language: string;
-  html_url: string;
-  description: string;
+export interface filmType {
+  imdbID: string;
+  Title: string;
+  Year: string;
+  Type: string;
+  Poster: string;
 }
 
-export interface githubStateType {
-  languageList: string[];
-  favorList: string[];
+export interface filmStateType {
+  favorList: filmType[];
   search: {
-    result: { items: repoType[] };
+    result: { items: filmType[]; total: number; page: number };
     isLoading: boolean;
     isSuccess: boolean;
   };
   [key: string]: any;
 }
 
-export type favorType = 'all' | 'favored' | 'unfavored';
+export type favorType = "all" | "favored" | "unfavored";
