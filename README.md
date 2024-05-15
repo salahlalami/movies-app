@@ -2,6 +2,12 @@
 
 ## Getting Started
 
+before , Add your ApI key in .env file
+
+```bash
+NEXT_PUBLIC_API_KEY=your_NEXT_PUBLIC_API_KEY
+```
+
 First, install packages:
 
 ```bash
